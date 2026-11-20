@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 private static ArrayList<String> list = new ArrayList<>();
 private static boolean needsToBeSaved = false;
-private static boolean programRunning = true;
 private static boolean lastWasPrint = false;
 private static String listName = "";
 
@@ -48,7 +47,7 @@ private static void AddList(Scanner in) {
 }
 
 private static void DeleteList(Scanner in) {
-    if(list.size() == 0) {
+    if(list.isEmpty()) {
         IO.println("List is empty");
         return;
     }
@@ -88,7 +87,7 @@ private static void MoveList(Scanner in) {
     }
 }
 
-private static void OpenList(Scanner in) throws FileNotFoundException, IOException {
+private static void OpenList(Scanner in) throws IOException {
     if (needsToBeSaved)
         if(!SafeInput.getYNConfirm(in, "Your list is unsaved. Do you wish to continue? [y/n] ")) return;
 
@@ -113,7 +112,7 @@ private static void OpenList(Scanner in) throws FileNotFoundException, IOExcepti
     needsToBeSaved = false; // list is already in storage
 }
 
-private static void SaveList(Scanner in) throws FileNotFoundException, IOException {
+private static void SaveList(Scanner in) throws IOException {
     Path newFile = null;
     if (!listName.isEmpty()) {
         newFile = Path.of(System.getProperty("user.dir") + "\\src\\" + listName);

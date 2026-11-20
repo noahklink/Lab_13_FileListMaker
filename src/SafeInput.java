@@ -25,6 +25,7 @@ public class SafeInput {
             if(pipe.hasNextInt()) {
                 done = true;
                 retInt = pipe.nextInt();
+                pipe.nextLine();
             } else {
                 trash = pipe.nextLine();
                 IO.println("Expected int, got \"" + trash + "\"");
